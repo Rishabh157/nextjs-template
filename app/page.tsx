@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import ORGBanner from "@/components/ui/organism/ORGBanner/ORGBanner";
 import ORGHeaderOne from "@/components/ui/organism/ORGHeader/ORGHeaderOne";
 import ORGHeaderTwo from "@/components/ui/organism/ORGHeader/ORGHeaderTwo";
@@ -134,7 +135,10 @@ export default function Home() {
         );
       })}
       SLIDER
-      <ORGBanner count={3} />
+      {/* <ORGBanner count={3} /> */}
+      <div >
+        <Button>s</Button>
+      </div>
     </div>
   );
 }
