@@ -1,4 +1,17 @@
+"use client";
+
 import React from "react";
+import ATMButton from "../../atom/ATMButton/ATMButton";
+import { IconBell, IconHeart, IconShoppingCart } from "@tabler/icons-react";
+import ATMNavigationMenu from "../../atom/ATMNavigationMenu/ATMNavigationMenu";
+
+type NavItem = {
+  id: string;
+  type: "navigation-menu" | "link";
+  label: string;
+  options?: { id: string; label: string; optionUrl: string }[];
+  url?: string;
+};
 
 type Props = {
   settings: {
@@ -11,22 +24,36 @@ type Props = {
   };
   searchProps: {
     searchBarPlaceholder: string;
+    isFullWidth: boolean;
   };
   navItemProps: {
-    navItems: string[];
+    showNavItems: boolean;
+    navItems: NavItem[];
   };
 };
 
 const ORGHeaderTwo = ({ navItemProps, settings, searchProps }: Props) => {
   return (
-    <div className={`${settings.backgroundColor} border-b`}>
-      <div className={`flex flex-1 p-4 container mx-auto items-center gap-8`}>
+    <div
+      style={{
+        background: settings?.backgroundColor,
+        color: settings?.textColor,
+      }}
+      className={` border-b`}
+    >
+      <div
+        className={`relative flex flex-1 container mx-auto items-center gap-8`}
+      >
         {/* Nav Items */}
-        <div className={`flex flex-1 gap-4 ${""}`}>
-          {navItemProps?.navItems?.map((item: any) => (
-            <div key={item} className={`${settings?.textColor}`}>
-              {item}
-            </div>
+        <div className={`flex flex-1 ${""}`}>
+          {navItemProps?.navItems?.map((item) => (
+            <ATMNavigationMenu
+              key={item.id}
+              type={item.type}
+              label={item.label}
+              options={item.options}
+              url={item.url}
+            />
           ))}
         </div>
 
@@ -35,13 +62,29 @@ const ORGHeaderTwo = ({ navItemProps, settings, searchProps }: Props) => {
 
         {/* Actions */}
         <div className="flex flex-1 gap-4 justify-end items-center">
-          <div className={`p-2 bg-gray-100 flex-auto`}>
+          <div
+            className={`p-2 bg-white flex-auto border rounded-md text-black`}
+          >
             {searchProps?.searchBarPlaceholder}
           </div>
-          {settings?.profile && <div>Login</div>}
-          {settings?.wishlist && <div>Wishlist</div>}
-          {settings?.cart && <div>Bag</div>}
-          {settings?.bell && <div>bell</div>}
+
+          <span className="flex items-center">
+            {settings?.wishlist && (
+              <ATMButton size="icon" variant="ghost">
+                <IconHeart />
+              </ATMButton>
+            )}
+            {settings?.cart && (
+              <ATMButton size="icon" variant="ghost">
+                <IconShoppingCart />
+              </ATMButton>
+            )}
+            {settings?.bell && (
+              <ATMButton size="icon" variant="ghost">
+                <IconBell />
+              </ATMButton>
+            )}
+          </span>
         </div>
       </div>
     </div>

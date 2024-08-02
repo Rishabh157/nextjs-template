@@ -5,7 +5,7 @@ import ATMTypography from "../ATMTypography/ATMTypography";
 type Props = {
   type: "navigation-menu" | "link";
   label: string;
-  options?: { id: string; label: string }[];
+  options?: { id: string; label: string; optionUrl: string }[];
   url?: string;
 };
 
@@ -29,15 +29,21 @@ const ATMNavigationMenu = ({ type, label, options, url }: Props) => {
           </div>
           {isHovered && (
             <div
-              className={`absolute left-0 top-full border shadow-lg p-8 container mx-auto bg-white transition-opacity duration-700 ${
+              className={`absolute z-50 left-0 top-full border shadow-lg p-8 container mx-auto bg-white transition-opacity duration-700 ${
                 isHovered ? "opacity-100" : "opacity-0 pointer-events-none"
               }`}
             >
-              {options?.map((option) => (
-                <div key={option.id} className="py-2">
-                  {option.label}
-                </div>
-              ))}
+              <div className="flex flex-col">
+                {options?.map((option) => (
+                  <Link
+                    href={option?.optionUrl}
+                    key={option?.id}
+                    className="py-2"
+                  >
+                    {option?.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
         </>
