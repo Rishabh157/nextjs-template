@@ -4,14 +4,7 @@ import React from "react";
 import ATMButton from "../../atom/ATMButton/ATMButton";
 import { IconBell, IconHeart, IconShoppingCart } from "@tabler/icons-react";
 import ATMNavigationMenu from "../../atom/ATMNavigationMenu/ATMNavigationMenu";
-
-type NavItem = {
-  id: string;
-  type: "navigation-menu" | "link";
-  label: string;
-  options?: { id: string; label: string; optionUrl: string }[];
-  url?: string;
-};
+import { NavigationMenuProps } from "@/types/navigationMenuType";
 
 type Props = {
   settings: {
@@ -28,7 +21,7 @@ type Props = {
   };
   navItemProps: {
     showNavItems: boolean;
-    navItems: NavItem[];
+    navItems: NavigationMenuProps[];
   };
 };
 
@@ -41,7 +34,7 @@ const ORGHeaderOne = ({ navItemProps, settings, searchProps }: Props) => {
       }}
       className={`border-b min-h-[60px] flex items-center`}
     >
-      <div className="relative flex flex-1 justify-between px-2 lg:px-0 container mx-auto items-center gap-8">
+      <div className="relative flex flex-1 justify-between container mx-auto items-center gap-8">
         {/* Logo */}
         <div
           className={`${
@@ -69,7 +62,7 @@ const ORGHeaderOne = ({ navItemProps, settings, searchProps }: Props) => {
           >
             {navItemProps?.navItems?.map((item) => (
               <ATMNavigationMenu
-                key={item.id}
+                id={item.id}
                 type={item.type}
                 label={item.label}
                 options={item.options}

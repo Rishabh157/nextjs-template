@@ -1,5 +1,3 @@
-// carouselTypes.ts
-
 export type AutoplayProps = {
   delay: number;
   jump: boolean; // if true slide animation is disabled
@@ -18,19 +16,15 @@ export type ScrollProps = {
   stopOnFocusIn: boolean;
 };
 
+
 export type ArrowProps = {
   arrows: boolean;
 };
 
-export type SlideProps = {
-  slides: any[];
-  slidesPerView: number;
-};
-
-export type CarouselProps = {
+export type ProductSliderProps = {
   autoplayProps?: AutoplayProps;
   scrollProps?: ScrollProps;
   loop?: boolean;
   arrowProps?: ArrowProps;
-  slideProps: SlideProps;
+  slidesPerView?: number;
 };

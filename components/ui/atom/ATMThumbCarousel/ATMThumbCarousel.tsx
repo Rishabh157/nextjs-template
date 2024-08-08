@@ -11,7 +11,7 @@ import { IconCircleFilled } from "@tabler/icons-react";
 type Props = {
   slides: { id: string; url: string }[];
   options?: EmblaOptionsType;
-  variant?: "inline" | "block";
+  variant?: "inline" | "block" | any;
 };
 
 const ATMThumbCarousel = ({ slides, variant, options }: Props) => {
