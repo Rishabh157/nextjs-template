@@ -46,7 +46,7 @@ const ATMButton = ({
           iconPosition === "start" ? "" : "flex-row-reverse"
         }`}
       >
-        {icon && <div className="w-4 h-4">{icon}</div>}
+        {icon && <div className="">{icon}</div>}
         {children}
       </div>
     </Button>

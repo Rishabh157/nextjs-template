@@ -8,6 +8,11 @@ export default {
       },
       {
         protocol: "https",
+        hostname: "images.bewakoof.com",
+        port: "",
+      },
+      {
+        protocol: "https",
         hostname: "media.licdn.com",
         port: "",
       },
