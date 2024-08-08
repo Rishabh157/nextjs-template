@@ -17,7 +17,7 @@ const variantMap = {
   h6: "text-base sm:text-base md:text-base lg:text-h6 xl:text-h6", // Smallest heading, scales up
   p: "text-sm sm:text-sm md:text-sm lg:text-base xl:text-base", // Paragraph text, no significant change
   span: "text-xs sm:text-xs md:text-xs lg:text-sm xl:text-sm", // Small text, scales down
-  div: "text-xxs sm:text-xxs md:text-xxs lg:text-xs xl:text-xs", // Extra small text, consistent across sizes
+  div: "text-xs sm:text-xxs md:text-xxs lg:text-xs xl:text-xs", // Extra small text, consistent across sizes
 };
 
 const ATMTypography = ({ children, variant, extraClasses }: Props) => {
