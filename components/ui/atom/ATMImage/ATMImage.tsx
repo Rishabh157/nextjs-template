@@ -7,7 +7,7 @@ type Props = {
 };
 const ATMImage = ({ imgUrl, extraClasses }: Props) => {
   return (
-    <div className={`${extraClasses}`}>
+    <div className={`${extraClasses} relative`}>
       <div className="unset-img">
         <Image fill sizes="100%" className="custom-img" src={imgUrl} alt="" />
       </div>

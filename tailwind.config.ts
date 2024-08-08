@@ -18,6 +18,19 @@ const config = {
       },
     },
     extend: {
+      fontSize: {
+        'h1': '5.61rem',
+        'h2': '4.209rem',
+        'h3': '3.157rem',
+        'h4': '2.369rem',
+        'h5': '1.777rem',
+        'h6': '1.333rem',
+        'base': '1rem',
+        'sm': '0.875rem',
+        'xs': '0.75rem',
+        'xxs': '0.563rem',
+      },
+
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
