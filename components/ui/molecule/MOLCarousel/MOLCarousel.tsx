@@ -5,7 +5,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import { EmblaCarouselType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import AutoScroll from "embla-carousel-auto-scroll";
-import ClassNames from "embla-carousel-class-names";
 import {
   IconArrowLeft,
   IconArrowRight,
@@ -78,7 +77,6 @@ export function MOLCarousel({
   autoplayProps,
   scrollProps,
   loop,
-  classNamesProps,
   slideProps,
   arrowProps,
 }: CarouselProps) {
@@ -104,18 +102,9 @@ export function MOLCarousel({
       }
     : null;
 
-  const classNamesOptions = classNamesProps
-    ? {
-        inView: classNamesProps.inView,
-        draggable: classNamesProps.draggable,
-        dragging: classNamesProps.dragging,
-      }
-    : null;
-
   const plugins = [
     ...(autoplayOptions ? [Autoplay(autoplayOptions)] : []),
     ...(scrollOptions ? [AutoScroll(scrollOptions)] : []),
-    ...(classNamesOptions ? [ClassNames(classNamesOptions)] : []),
   ];
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop }, plugins);

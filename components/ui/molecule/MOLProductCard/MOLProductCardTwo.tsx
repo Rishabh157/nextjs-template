@@ -43,7 +43,6 @@ const MOLProductCardTwo = ({
         <MOLCarousel
           arrowProps={carouseldata?.arrowProps}
           slideProps={carouseldata?.slideProps}
-          classNamesProps={carouseldata?.classNamesProps}
           scrollProps={carouseldata?.scrollProps}
           autoplayProps={carouseldata?.autoplayProps}
           loop={carouseldata?.loop}

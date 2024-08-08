@@ -4,7 +4,6 @@ import React from "react";
 import { Button } from "../../button";
 
 type Props = {
-  asChild?: boolean;
   variant?:
     | "default"
     | "destructive"
@@ -23,7 +22,6 @@ type Props = {
   width?: "full" | "fit";
 };
 const ATMButton = ({
-  asChild,
   variant = "default",
   children,
   onClick,
@@ -34,21 +32,34 @@ const ATMButton = ({
   width = "fit",
 }: Props) => {
   return (
+    // <Button
+    //   asChild={asChild}
+    //   variant={variant}
+    //   className={`flex gap-2 items-center
+    //             ${iconPosition === "start" ? "" : "flex-row-reverse"}
+    //             ${width === "full" ? "w-full" : "w-fit"} ${extraClasses}`}
+    //   onClick={onClick}
+    //   size={size}
+    // >
+    //   <div
+    //     className={`flex gap-2 items-center ${
+    //       iconPosition === "start" ? "" : "flex-row-reverse"
+    //     }`}
+    //   >
+    //     {icon && <div className="">{icon}</div>}
+    //     {children}
+    //   </div>
+    // </Button>
     <Button
-      asChild={asChild}
       variant={variant}
-      className={`${width === "full" ? "w-full" : "w-fit"}  ${extraClasses}`}
+      className={`w-fit  ${extraClasses}`}
       onClick={onClick}
       size={size}
     >
-      <div
-        className={`flex gap-2 items-center ${
-          iconPosition === "start" ? "" : "flex-row-reverse"
-        }`}
-      >
+      <span>
         {icon && <div className="">{icon}</div>}
         {children}
-      </div>
+      </span>
     </Button>
   );
 };
