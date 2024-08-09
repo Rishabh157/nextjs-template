@@ -1,6 +1,6 @@
 import { Form, Formik, FormikHelpers } from "formik";
 import FormLayout from "../Layout/FormLayout";
-import { array, number, object, string } from "yup";
+import { array, boolean, date, number, object, string } from "yup";
 
 type Props = {
   onClose?: () => void;
@@ -17,6 +17,10 @@ const AddFormWrapper = ({ onClose }: Props) => {
       { value: "remix", label: "Remix" },
       { value: "nuxt.js", label: "Nuxt.js" },
     ],
+    check: "",
+    terms: true,
+    date: null,
+    dateRange: null,
   };
 
   // Validation Schema
@@ -25,7 +29,17 @@ const AddFormWrapper = ({ onClose }: Props) => {
     password: string().required("Please enter Password"),
     gender: string().required("Please  select gender"),
     frameWork: object().required("Please select Framework"),
-    frameWorks: array().required("Please select Frameworks"),
+    frameWorks: array()
+      .min(1, "Please select at least one")
+      .required("Please select Frameworks"),
+    check: array()
+      .min(1, "Please select at least one")
+      .required("Please select one"),
+    terms: boolean()
+      .oneOf([true], "You must accept the terms and conditions")
+      .required("required"),
+    date: date().required("Please select date"),
+    dateRange: object().required("Please select date range"),
   });
 
   // Handle Submit

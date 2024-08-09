@@ -825,13 +825,13 @@ export default function Home() {
         <div className="w-fit gap-4">
           <ATMThumbCarousel
             slides={SLIDES?.slideData}
-            variant={SLIDES?.variant}
+            // variant={SLIDES?.variant}
           />
         </div>
         <div className="w-fit gap-4">
           <ATMThumbCarousel
             slides={SLIDESS?.slideData}
-            variant={SLIDESS?.variant}
+            // variant={SLIDESS?.variant}
           />
         </div>
       </div>

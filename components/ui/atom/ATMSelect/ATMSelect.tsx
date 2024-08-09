@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Check, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -17,6 +16,7 @@ import {
 } from "@/components/ui/popover";
 import ATMTypography from "../ATMTypography/ATMTypography";
 import { ErrorMessage } from "formik";
+import { useMemo, useState } from "react";
 
 type Option = {
   value: string;
@@ -24,7 +24,7 @@ type Option = {
 };
 
 type ATMSelectProps = {
-  value: Option | Option[]; // Updated type to handle single or multiple values
+  value: Option | Option[];
   name?: string;
   label: string;
   placeholder: string;
@@ -37,7 +37,7 @@ type ATMSelectProps = {
   multiple?: boolean;
 };
 
-export function ATMSelect({
+const ATMSelect = ({
   label,
   value,
   placeholder,
@@ -49,19 +49,13 @@ export function ATMSelect({
   multiple = false,
   disabled = false,
   supportText,
-}: ATMSelectProps) {
-  const [open, setOpen] = React.useState(false);
-  const [selectedValues, setSelectedValues] = React.useState<Option[]>(
-    Array.isArray(value) ? value : [] // Initialize state with the correct value
-  );
+}: ATMSelectProps) => {
+  const [open, setOpen] = useState(false);
 
-  React.useEffect(() => {
-    if (!multiple) {
-      setSelectedValues(Array.isArray(value) ? [] : [value]);
-    } else {
-      setSelectedValues(Array.isArray(value) ? value : []);
-    }
-  }, [value, multiple]);
+  const selectedValues = useMemo(
+    () => (Array.isArray(value) ? value : value ? [value] : []),
+    [value]
+  );
 
   const handleSelect = (currentOption: Option) => {
     if (multiple) {
@@ -73,10 +67,8 @@ export function ATMSelect({
             (option) => option.value !== currentOption.value
           )
         : [...selectedValues, currentOption];
-      setSelectedValues(newValues);
       onChange(newValues);
     } else {
-      setSelectedValues([currentOption]);
       onChange(currentOption);
       setOpen(false);
     }
@@ -86,7 +78,7 @@ export function ATMSelect({
     selectedValues.some((selected) => selected.value === option.value);
 
   return (
-    <div className={`gap-2 mt-1 ${inline ? "flex" : "flex flex-col"}`}>
+    <div className={cn("gap-2 mt-1", inline ? "flex" : "flex flex-col")}>
       {label && (
         <ATMTypography variant="span" extraClasses="min-w-[200px]">
           {label} {required && <span className="text-red-500">*</span>}
@@ -99,7 +91,7 @@ export function ATMSelect({
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className="w-[200px] flex justify-between overflow-hidden scroll-auto"
+              className="w-[200px] flex justify-between overflow-hidden"
               onClick={() => !disabled && setOpen((prev) => !prev)}
               disabled={disabled}
             >
@@ -108,7 +100,7 @@ export function ATMSelect({
                   ? selectedValues.map((option) => option.label).join(", ")
                   : placeholder}
               </ATMTypography>
-              <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+              <ChevronDown className="ml-2 h-4 w-4 opacity-50" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-[200px] p-0">
@@ -121,9 +113,10 @@ export function ATMSelect({
                     <CommandItem
                       key={option.value}
                       onSelect={() => handleSelect(option)}
-                      className={cn("cursor-pointer p-2", {
-                        "bg-gray-200": isSelected(option),
-                      })}
+                      className={cn(
+                        "cursor-pointer p-2",
+                        isSelected(option) && "bg-gray-200"
+                      )}
                     >
                       {option.label}
                       <Check
@@ -140,13 +133,15 @@ export function ATMSelect({
           </PopoverContent>
         </Popover>
         <div className="relative">
-          <ATMTypography variant="div">{supportText}</ATMTypography>
+          {supportText && (
+            <ATMTypography variant="div">{supportText}</ATMTypography>
+          )}
           {name && (
             <ErrorMessage name={name}>
               {(errMsg) => (
                 <ATMTypography
                   variant="div"
-                  extraClasses="bg-white absolute top-0 text-red-500 w-full"
+                  extraClasses="absolute top-0 text-red-500 w-full bg-white"
                 >
                   {errMsg}
                 </ATMTypography>
@@ -157,4 +152,6 @@ export function ATMSelect({
       </div>
     </div>
   );
-}
+};
+
+export default ATMSelect;

@@ -25,7 +25,7 @@ const ATMRadioGroup = ({
   orientation,
 }: ATMRadioGroupProps) => {
   return (
-    <div className="min-w-[400px] select-none">
+    <div className="min-w-[400px] select-none ">
       <div
         className={` gap-2 mt-1 ${
           inline ? "flex" : "flex flex-col"
@@ -63,7 +63,7 @@ const ATMRadioGroup = ({
               </div>
             );
           })}
-          <div>
+          <div className="">
             {name && (
               <ErrorMessage name={name}>
                 {(errMsg) => (

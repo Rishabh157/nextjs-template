@@ -4,7 +4,7 @@ import ATMFileUpLoader from "@/components/ui/atom/ATMFileUpLoader/ATMFileUpLoade
 import ATMInput from "@/components/ui/atom/ATMInput/ATMInput";
 import ATMPassword from "@/components/ui/atom/ATMPassword/ATMPassword";
 import ATMRadioGroup from "@/components/ui/atom/ATMRadioGroup/ATMRadioGroup";
-import { ATMSelect } from "@/components/ui/atom/ATMSelect/ATMSelect";
+import ATMSelect from "@/components/ui/atom/ATMSelect/ATMSelect";
 import ATMTermsCondition from "@/components/ui/atom/ATMTermsCondition/ATMTermsCondition";
 import ATMTextArea from "@/components/ui/atom/ATMTextArea/ATMTextArea";
 import ATMTypography from "@/components/ui/atom/ATMTypography/ATMTypography";
@@ -116,19 +116,6 @@ const FormLayout = ({ formikProps, onClose }: Props) => {
         </div> */}
 
         <div>
-          <ATMRadioGroup
-            name="gender"
-            value={values?.gender}
-            groupData={radioGroupData}
-            label="Gender"
-            required
-            onChange={(e) => setFieldValue("gender", e)}
-            supportText="select one "
-            inline
-            orientation="horizontal "
-          />
-        </div>
-        <div>
           <ATMSelect
             value={values?.frameWork}
             name="frameWork"
@@ -139,7 +126,6 @@ const FormLayout = ({ formikProps, onClose }: Props) => {
             inline
             supportText="select relevent framework"
             required
-            // multiple
           />
         </div>
         <div>
@@ -156,19 +142,12 @@ const FormLayout = ({ formikProps, onClose }: Props) => {
             multiple
           />
         </div>
-        {/* <div>
-          <ATMCheckBox
-            groupData={radioGroupData}
-            label="Select options"
-            inline
-            required={true}
-            supportText="Please select at least one option"
-            orientation="horizontal"
-          />
-        </div> */}
-        {/* <div>
+
+        <div>
           <ATMTermsCondition
-            onChange={(checked) => console.log(checked)}
+            value={values?.terms}
+            name="terms"
+            onChange={(checked) => setFieldValue("terms", checked)}
             terms={
               <ATMTypography
                 variant="span"
@@ -185,31 +164,57 @@ const FormLayout = ({ formikProps, onClose }: Props) => {
             }
             inline
           />
-        </div> */}
+        </div>
 
-        {/* <div>
+        <div>
           <ATMDatePicker
-            value={date}
+            name="date"
+            value={values?.date}
             label="Single Date"
             placeholder="Select a date"
-            onChange={(date) => setDate(date)}
+            onChange={(date) => setFieldValue("date", date)}
             required
             inline
           />
 
           <ATMDatePicker
-            value={selectedDateRange}
+            name="dateRange"
+            value={values?.dateRange}
             label="Select date range"
             placeholder="Pick a date range"
-            onChange={(range) =>
-              setSelectedDateRange(range as { from: Date; to?: Date })
-            }
+            onChange={(range) => setFieldValue("dateRange", range)}
             mode="range"
             required
             inline
             // disabled={(date) => date > new Date()}
           />
-        </div> */}
+        </div>
+        <div>
+          <ATMRadioGroup
+            name="gender"
+            value={values?.gender}
+            groupData={radioGroupData}
+            label="Gender"
+            required
+            onChange={(e) => setFieldValue("gender", e)}
+            supportText="select one "
+            inline
+            orientation="horizontal "
+          />
+        </div>
+        <div>
+          <ATMCheckBox
+            value={values?.check}
+            name="check"
+            groupData={radioGroupData}
+            label="Select Check"
+            inline
+            onChange={(value) => setFieldValue("check", value)}
+            required={true}
+            supportText="Please select at least one option"
+            orientation="horizontal"
+          />
+        </div>
         <button type="submit">save</button>
       </div>
     </>

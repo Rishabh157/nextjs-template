@@ -2,6 +2,7 @@
 import React from "react";
 import { Checkbox } from "../../checkbox";
 import ATMTypography from "../ATMTypography/ATMTypography";
+import { ErrorMessage } from "formik";
 
 type GroupData = {
   label: string;
@@ -9,70 +10,93 @@ type GroupData = {
 };
 
 type ATMCheckBoxProps = {
+  name?: string;
+  value: string[];
   groupData: GroupData[];
   label: string;
-  onChange?: (value: string, checked: boolean) => void;
+  onChange: (value: string[]) => void;
   inline?: boolean;
   required?: boolean;
   supportText?: string;
   orientation?: "vertical" | "horizontal";
 };
 
-const ATMCheckBox = ({
+const ATMCheckBox: React.FC<ATMCheckBoxProps> = ({
   groupData,
   label,
+  value,
+  name,
   onChange,
   inline = false,
   required = false,
   supportText,
   orientation = "vertical",
-}: ATMCheckBoxProps) => {
+}) => {
+  const handleCheckboxChange = (groupValue: string, checked: boolean) => {
+    const updatedValues = checked
+      ? [...value, groupValue]?.filter(
+          (val, index, self) => self?.indexOf(val) === index
+        )
+      : value?.filter((val) => val !== groupValue);
+    onChange(updatedValues);
+  };
+
   return (
-    <>
-      <div
-        className={`gap-2 mt-1  min-w-[400px] ${
-          inline ? "flex" : "flex flex-col"
-        } items-start`}
-      >
-        {label && (
-          <div
-            className={` min-w-[200px] ${
-              !inline ? "flex items-center gap-2  " : "flex flex-col "
-            }`}
-          >
-            <ATMTypography variant="span" extraClasses="capitalize">
-              {label} {required && <span className="text-red-500"> * </span>}
-            </ATMTypography>
-            <ATMTypography variant="div">
-              {supportText && <div>{`(${supportText})`}</div>}
-            </ATMTypography>
-          </div>
-        )}
+    <div
+      className={`gap-2 mt-1 min-w-[400px] ${
+        inline ? "flex items-start" : "flex flex-col"
+      }`}
+    >
+      {label && (
         <div
-          className={`flex gap-1 flex-wrap ${
-            orientation === "vertical" ? "flex-col " : ""
+          className={`min-w-[200px] ${
+            inline ? "flex flex-col" : "flex items-center gap-2"
           }`}
         >
-          {groupData?.map((group) => {
-            return (
-              <div
-                key={group.value}
-                className="flex items-center space-x-2  min-w-[80px] "
-              >
-                <Checkbox
-                  id={group.value}
-                  onCheckedChange={(checked) =>
-                    // onChange(checked , group.value)
-                    {}
-                  }
-                />
-                <ATMTypography variant="span">{group.label}</ATMTypography>
-              </div>
-            );
-          })}
+          <ATMTypography variant="span" extraClasses="capitalize">
+            {label} {required && <span className="text-red-500"> *</span>}
+          </ATMTypography>
+          {supportText && (
+            <ATMTypography variant="div">
+              <span>{`(${supportText})`}</span>
+            </ATMTypography>
+          )}
         </div>
+      )}
+      <div
+        className={`flex gap-1 flex-wrap ${
+          orientation === "vertical" ? "flex-col" : ""
+        }`}
+      >
+        {groupData.map(({ label: groupLabel, value: groupValue }) => (
+          <div
+            key={groupValue}
+            className="flex items-center space-x-2 min-w-[80px]"
+          >
+            <Checkbox
+              id={groupValue}
+              checked={value.includes(groupValue)}
+              onCheckedChange={(checked) =>
+                handleCheckboxChange(groupValue, checked as boolean)
+              }
+            />
+            <ATMTypography variant="span">{groupLabel}</ATMTypography>
+          </div>
+        ))}
+        {name && (
+          <ErrorMessage name={name}>
+            {(errMsg) => (
+              <ATMTypography
+                variant="div"
+                extraClasses="bg-white text-red-500 w-full"
+              >
+                {errMsg}
+              </ATMTypography>
+            )}
+          </ErrorMessage>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 
