@@ -8,13 +8,16 @@ import MOLProductCardOne from "@/components/ui/molecule/MOLProductCard/MOLProduc
 import ATMTypography from "@/components/ui/atom/ATMTypography/ATMTypography";
 import ORGcategoryNavigationBarTwo from "@/components/ui/organism/ORGCategoryNavigationBar/ORGcategoryNavigationBarTwo";
 import MOLSectionHeader from "@/components/ui/molecule/MOLSectionHeader/MOLSectionHeader";
+import ATMLinkButton from "@/components/ui/atom/ATMButton/ATMLinkButton";
+import ATMDropdownMenu from "@/components/ui/atom/ATMDropdownMenu/ATMDropdownMenu";
+import { IconUser } from "@tabler/icons-react";
 
 const headerData = [
   {
     id: "ORGHeaderOne",
     logo: "LOGO",
     navItemProps: {
-      showNavItems: false,
+      showNavItems: true,
       navItems: [
         {
           id: "nav-men",
@@ -68,15 +71,14 @@ const headerData = [
         },
       ],
     },
-    userActions: ["Login", "Wish", "Bag"],
+    // userActions: ["Login", "Wish", "Bag"],
     searchProps: {
       searchBarPlaceholder: "Search...",
-      isFullWidth: false,
+      isFullWidth: true,
     },
     settings: {
       backgroundColor: "#ffffff",
       textColor: "#121212",
-      profile: true,
       cart: true,
       wishlist: true,
       bell: true,
@@ -263,21 +265,72 @@ const basicProducts = [
   },
 ];
 
+const categorydata = [
+  {
+    id: "1",
+    imgUrl:
+      "https://rukminim2.flixcart.com/fk-p-flap/64/64/image/698ba0cebe456aaf.jpg?q=100",
+    text: "Category Name",
+  },
+  {
+    id: "2",
+    imgUrl:
+      "https://rukminim2.flixcart.com/fk-p-flap/64/64/image/44e10b16e649b691.jpg?q=100",
+    text: "Category Name",
+  },
+  {
+    id: "3",
+    imgUrl:
+      "https://rukminim2.flixcart.com/fk-p-flap/64/64/image/698ba0cebe456aaf.jpg?q=100",
+    text: "Category Name",
+  },
+  {
+    id: "4",
+    imgUrl:
+      "https://rukminim2.flixcart.com/fk-p-flap/64/64/image/698ba0cebe456aaf.jpg?q=100",
+    text: "Category Name",
+  },
+  {
+    id: "5",
+    imgUrl:
+      "https://rukminim2.flixcart.com/fk-p-flap/64/64/image/698ba0cebe456aaf.jpg?q=100",
+    text: "Category Name",
+  },
+  {
+    id: "6",
+    imgUrl:
+      "https://rukminim2.flixcart.com/fk-p-flap/64/64/image/698ba0cebe456aaf.jpg?q=100",
+    text: "Category Name",
+  },
+  {
+    id: "7",
+    imgUrl:
+      "https://rukminim2.flixcart.com/fk-p-flap/64/64/image/698ba0cebe456aaf.jpg?q=100",
+    text: "Category Name",
+  },
+  {
+    id: "8",
+    imgUrl:
+      "https://rukminim2.flixcart.com/fk-p-flap/64/64/image/698ba0cebe456aaf.jpg?q=100",
+    text: "Category Name",
+  },
+];
+
 export default function Home() {
-  // const menuItems = [
-  //   { id: 1, content: "Profile", onClick: () => alert("Profile clicked") },
-  //   { id: 2, content: <a href="/billing">Billing</a> },
-  //   {
-  //     id: 3,
-  //     content: <div>Team</div>,
-  //     onClick: () => console.log("Team clicked"),
-  //   },
-  //   {
-  //     id: 4,
-  //     content: "Subscription",
-  //     onClick: () => alert("Subscription clicked"),
-  //   },
-  // ];
+  const menuItems = [
+    { id: 1, content: "Profile", onClick: () => alert("Profile clicked") },
+    { id: 2, content: <a href="/billing">Billing</a> },
+    {
+      id: 3,
+      content: <div>Team</div>,
+      onClick: () => console.log("Team clicked"),
+    },
+    {
+      id: 4,
+      content: "Subscription",
+      onClick: () => alert("Subscription clicked"),
+    },
+  ];
 
   const [wishlist, setWishlist] = useState<string[]>([]);
 
@@ -291,7 +344,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 sticky top-0 z-50">
         {headerData.map((header: any) => (
           <ORGHeaderOne
             key={header.id}
@@ -302,13 +355,13 @@ export default function Home() {
         ))}
       </div>
 
-      <ORGCategoryNavigationBar
+      {/* <ORGCategoryNavigationBar
         backgroundColor="hsl(var(--primary))"
         textColor="#ffffff"
         navItems={categoryNavigation}
-      />
+      /> */}
 
-      <ORGcategoryNavigationBarTwo />
+      <ORGcategoryNavigationBarTwo categoryData={categorydata} />
 
       <div className="h-[50vh]">
         {carouselData?.map((carouselData: any) => {
@@ -330,7 +383,7 @@ export default function Home() {
           buttonText="View more"
           buttonLink=""
         />
-        <div className="py-6 grid grid-cols-5 gap-4">
+        <div className="py-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
           {basicProducts.map((product, index) => (
             <MOLProductCardOne
               key={index}
@@ -351,7 +404,7 @@ export default function Home() {
         <div>
           <ATMTypography variant="h5">Shop by category</ATMTypography>
         </div>
-        <div className="py-6 grid grid-cols-5 gap-4">
+        <div className="py-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
           {basicProducts.map((product, index) => (
             <MOLProductCardOne
               key={index}
@@ -368,7 +421,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* <div className="container mx-auto flex p-4 px-0 gap-4">
+      <div className="container mx-auto flex flex-wrap p-4 px-0 gap-4">
         <ATMLinkButton href="/product-card">Product card</ATMLinkButton>
         <ATMLinkButton href="/carousel">Carousel</ATMLinkButton>
         <ATMLinkButton href="/thumbnail-gallery">
@@ -385,7 +438,7 @@ export default function Home() {
           label="My Account"
           items={menuItems}
         />
-      </div> */}
+      </div>
     </>
   );
 }

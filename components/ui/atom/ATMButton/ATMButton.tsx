@@ -52,11 +52,17 @@ const ATMButton = ({
     // </Button>
     <Button
       variant={variant}
-      className={`w-fit  ${extraClasses}`}
+      className={`  ${
+        width === "full" ? "w-full" : "w-fit"
+      } ${extraClasses} ${extraClasses}`}
       onClick={onClick}
       size={size}
     >
-      <span>
+      <span
+        className={`flex gap-2 items-center ${
+          iconPosition === "start" ? "" : "flex-row-reverse"
+        }`}
+      >
         {icon && <div className="">{icon}</div>}
         {children}
       </span>
