@@ -8,6 +8,16 @@ export default {
       },
       {
         protocol: "https",
+        hostname: "rukminim2.flixcart.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "images.bewakoof.com",
+        port: "",
+      },
+      {
+        protocol: "https",
         hostname: "media.licdn.com",
         port: "",
       },
