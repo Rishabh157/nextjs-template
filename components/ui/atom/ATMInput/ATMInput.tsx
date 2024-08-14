@@ -32,7 +32,7 @@ const ATMInput = ({
   supportText,
 }: ATMInputProps) => {
   return (
-    <div className="min-w-[400px] select-none">
+    <div className="min-w-[300px] select-none">
       <div className={` gap-2 mt-1 ${inline ? "flex" : "flex flex-col"}`}>
         {label && (
           <ATMTypography variant="span" extraClasses="min-w-[200px] ">
@@ -53,21 +53,23 @@ const ATMInput = ({
             />
           </div>
 
-          <div className="relative">
-            <ATMTypography variant="div">{supportText}</ATMTypography>
-            {name && (
-              <ErrorMessage name={name}>
-                {(errMsg) => (
-                  <ATMTypography
-                    variant="div"
-                    extraClasses=" bg-white  absolute top-[-3px] text-red-500 w-full"
-                  >
-                    {errMsg}
-                  </ATMTypography>
-                )}
-              </ErrorMessage>
-            )}
-          </div>
+          {supportText && (
+            <div className="relative">
+              <ATMTypography variant="div">{supportText}</ATMTypography>
+              {name && (
+                <ErrorMessage name={name}>
+                  {(errMsg) => (
+                    <ATMTypography
+                      variant="div"
+                      extraClasses=" bg-white  absolute top-[-3px] text-red-500 w-full"
+                    >
+                      {errMsg}
+                    </ATMTypography>
+                  )}
+                </ErrorMessage>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
