@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import ATMTypography from "../ATMTypography/ATMTypography";
 import { NavigationMenuProps, Option } from "@/types/navigationMenuType";
+import { IconChevronDown } from "@tabler/icons-react";
 
 const ATMNavigationMenu = ({
   id,
@@ -21,8 +22,9 @@ const ATMNavigationMenu = ({
     >
       {type === "navigation-menu" ? (
         <>
-          <div>
+          <div className="flex items-center gap-1">
             <ATMTypography variant="span">{label}</ATMTypography>
+            <IconChevronDown size={14} />
           </div>
           {isHovered && (
             <div
@@ -50,7 +52,7 @@ const ATMNavigationMenu = ({
         type === "link" && (
           <Link href={url || ""} passHref>
             <div className="cursor-pointer">
-              <ATMTypography variant="p">{label}</ATMTypography>
+              <ATMTypography variant="span">{label}</ATMTypography>
             </div>
           </Link>
         )

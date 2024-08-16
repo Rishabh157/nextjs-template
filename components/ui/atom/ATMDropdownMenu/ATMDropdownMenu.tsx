@@ -20,13 +20,19 @@ type Props = {
   items: MenuItem[];
 };
 
-const ATMDropdownMenu = ({ trigger, label = "Menu", items }: Props) => {
+const ATMDropdownMenu = ({ trigger, label, items }: Props) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>{trigger}</DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>{label}</DropdownMenuLabel>
-        <DropdownMenuSeparator />
+      <DropdownMenuTrigger className="flex items-center justify-center">
+        {trigger}
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        {label && (
+          <>
+            <DropdownMenuLabel>{label}</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+          </>
+        )}
         {items.map((item) => (
           <DropdownMenuItem key={item.id} onClick={item.onClick}>
             {item.content}

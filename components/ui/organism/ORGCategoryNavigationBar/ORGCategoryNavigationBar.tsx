@@ -15,7 +15,7 @@ const ORGCategoryNavigationBar = ({
 }: Props) => {
   return (
     <div
-      className="w-full"
+      className="w-full hidden lg:flex"
       style={{ background: backgroundColor, color: textColor }}
     >
       <div className="relative container mx-auto flex">

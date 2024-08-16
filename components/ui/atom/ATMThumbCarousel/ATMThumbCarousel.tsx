@@ -120,7 +120,7 @@ const ATMThumbCarousel = ({ slides, variant, options }: Props) => {
         }`}
       >
         <div
-          className="embla__viewport z-10 relative md:w-[400px]"
+          className="embla__viewport z-10 relative md:w-[600px]"
           ref={emblaMainRef}
         >
           <div className="embla__container aspect-square">
@@ -145,7 +145,7 @@ const ATMThumbCarousel = ({ slides, variant, options }: Props) => {
 
         <div
           className={`embla-thumbs  ${
-            variant === "inline" ? "md:h-[400px]" : " md:w-[400px]"
+            variant === "inline" ? "md:h-[400px]" : " md:w-[600px]"
           }`}
         >
           <div className="embla-thumbs__viewport" ref={emblaThumbsRef}>
