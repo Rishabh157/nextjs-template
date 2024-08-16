@@ -35,7 +35,7 @@ const MOLProductCardOne = ({
   };
 
   return (
-    <Link href="" className="border rounded-sm flex flex-col h-96">
+    <Link href="" className="border rounded-sm flex flex-col h-80 md:h-96">
       <div className="relative flex-1">
         <ATMImage extraClasses="w-full h-full" imgUrl={productImage} />
         <div

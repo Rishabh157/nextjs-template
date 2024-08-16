@@ -20,6 +20,7 @@ type Props = {
   icon?: any;
   iconPosition?: "start" | "end";
   width?: "full" | "fit";
+  borderRadius?: "none" | "sm" | "md";
 };
 const ATMButton = ({
   variant = "default",
@@ -30,6 +31,7 @@ const ATMButton = ({
   icon,
   iconPosition = "start",
   width = "fit",
+  borderRadius = "sm",
 }: Props) => {
   return (
     // <Button
@@ -52,11 +54,28 @@ const ATMButton = ({
     // </Button>
     <Button
       variant={variant}
-      className={`w-fit  ${extraClasses}`}
+      className={` 
+        ${
+          borderRadius === "sm"
+            ? "rounded"
+            : borderRadius === "md"
+            ? "rounded-sm"
+            : borderRadius === "none"
+            ? "border-none"
+            : ""
+        }
+        
+        ${
+          width === "full" ? "w-full" : "w-fit"
+        } ${extraClasses} ${extraClasses}`}
       onClick={onClick}
       size={size}
     >
-      <span>
+      <span
+        className={`flex gap-2 items-center ${
+          iconPosition === "start" ? "" : "flex-row-reverse"
+        }`}
+      >
         {icon && <div className="">{icon}</div>}
         {children}
       </span>
