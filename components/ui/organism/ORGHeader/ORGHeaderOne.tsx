@@ -14,6 +14,9 @@ import ATMSheet from "../../atom/ATMSheet/ATMSheet";
 import ATMAccordion from "../../atom/ATMAccordion/ATMAccordion";
 import ATMTypography from "../../atom/ATMTypography/ATMTypography";
 import MOLProfileMenu from "../../molecule/MOLProfileMenu/MOLProfileMenu";
+import { IconUser } from "@tabler/icons-react";
+import Image from "next/image";
+
 
 type Props = {
   settings: {
@@ -69,29 +72,29 @@ const ORGHeaderOne = ({ navItemProps, settings, searchProps }: Props) => {
 
           {/* Logo */}
           <div
-            className={`${
-              navItemProps?.showNavItems === false &&
+            className={`${navItemProps?.showNavItems === false &&
               searchProps?.isFullWidth === false
-                ? "flex-1"
-                : navItemProps?.showNavItems && searchProps?.isFullWidth
+              ? "flex-1"
+              : navItemProps?.showNavItems && searchProps?.isFullWidth
                 ? ""
                 : navItemProps?.showNavItems && !searchProps?.isFullWidth
-                ? "w-fit"
-                : !navItemProps?.showNavItems && searchProps?.isFullWidth
-                ? ""
-                : ""
-            }`}
+                  ? "w-fit"
+                  : !navItemProps?.showNavItems && searchProps?.isFullWidth
+                    ? ""
+                    : ""
+              }`}
           >
-            LOGO
+            <div className={`relative h-14 w-[100px]`}>
+              <Image fill sizes="100%" className="custom-img h-14" src='/logo.jpg' alt="" />
+            </div>
           </div>
         </div>
 
         {/* Nav Items */}
         {navItemProps?.showNavItems && (
           <div
-            className={`hidden lg:flex ${
-              searchProps?.isFullWidth ? "flex-none" : "flex-1"
-            }`}
+            className={`hidden lg:flex ${searchProps?.isFullWidth ? "flex-none" : "flex-1"
+              }`}
           >
             {navItemProps?.navItems?.map((item) => (
               <ATMNavigationMenu
@@ -107,9 +110,8 @@ const ORGHeaderOne = ({ navItemProps, settings, searchProps }: Props) => {
 
         {/* Search bar */}
         <div
-          className={`${
-            searchProps?.isFullWidth ? "flex-1" : "flex-auto"
-          } p-2 bg-white border rounded-md text-black hidden lg:flex`}
+          className={`${searchProps?.isFullWidth ? "flex-1" : "flex-auto"
+            } p-2 bg-white border rounded-md text-black hidden lg:flex`}
         >
           {searchProps?.searchBarPlaceholder}
         </div>
@@ -141,7 +143,7 @@ const ORGHeaderOne = ({ navItemProps, settings, searchProps }: Props) => {
               {login ? (
                 <MOLProfileMenu />
               ) : (
-                <ATMButton onClick={() => {}}>Login</ATMButton>
+                <ATMButton onClick={() => { }}>Login</ATMButton>
               )}
             </div>
           </span>

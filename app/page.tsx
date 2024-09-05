@@ -11,11 +11,14 @@ import MOLSectionHeader from "@/components/ui/molecule/MOLSectionHeader/MOLSecti
 import ATMLinkButton from "@/components/ui/atom/ATMButton/ATMLinkButton";
 import ATMDropdownMenu from "@/components/ui/atom/ATMDropdownMenu/ATMDropdownMenu";
 import { IconUser } from "@tabler/icons-react";
+import ORGBanner from "@/components/ui/organism/ORGBanner/ORGBanner";
+import Header from "@/components/ui/organism/Header/Header";
+
 
 const headerData = [
   {
     id: "ORGHeaderOne",
-    logo: "LOGO",
+    logo: 'LOGO',
     navItemProps: {
       showNavItems: true,
       navItems: [
@@ -344,7 +347,13 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col gap-4 sticky top-0 z-50">
+
+    
+      <Header />
+
+
+
+      {/* <div className="flex bg-red-400 flex-col gap-4 sticky top-0 z-50">
         {headerData.map((header: any) => (
           <ORGHeaderOne
             key={header.id}
@@ -353,7 +362,7 @@ export default function Home() {
             searchProps={header.searchProps}
           />
         ))}
-      </div>
+      </div> */}
 
       {/* <ORGCategoryNavigationBar
         backgroundColor="hsl(var(--primary))"
@@ -361,10 +370,10 @@ export default function Home() {
         navItems={categoryNavigation}
       /> */}
 
-      <ORGcategoryNavigationBarTwo categoryData={categorydata} />
+      {/* <ORGcategoryNavigationBarTwo categoryData={categorydata} /> */}
 
-      <div className="h-[50vh]">
-        {carouselData?.map((carouselData: any) => {
+      <div className="h-[50vh] bg-red-400">
+        {/* {carouselData?.map((carouselData: any) => {
           return (
             <MOLCarousel
               arrowProps={carouselData?.arrowProps}
@@ -374,10 +383,13 @@ export default function Home() {
               loop={carouselData?.loop}
             />
           );
-        })}
+        })} */}
       </div>
 
-      <div className="container mx-auto py-6">
+
+      {/* <ORGBanner  count={10} /> */}
+
+      {/* <div className="container bg-red-500 mx-auto py-6">
         <MOLSectionHeader
           sectionTitle="Trending Now"
           buttonText="View more"
@@ -398,9 +410,9 @@ export default function Home() {
             />
           ))}
         </div>
-      </div>
+      </div> */}
 
-      <div className="container mx-auto py-6">
+      {/* <div className="container mx-auto py-6">
         <div>
           <ATMTypography variant="h5">Shop by category</ATMTypography>
         </div>
@@ -419,9 +431,9 @@ export default function Home() {
             />
           ))}
         </div>
-      </div>
+      </div> */}
 
-      <div className="container mx-auto flex flex-wrap p-4 px-0 gap-4">
+      {/* <div className="container mx-auto flex flex-wrap p-4 px-0 gap-4">
         <ATMLinkButton href="/product-card">Product card</ATMLinkButton>
         <ATMLinkButton href="/carousel">Carousel</ATMLinkButton>
         <ATMLinkButton href="/thumbnail-gallery">
@@ -438,7 +450,7 @@ export default function Home() {
           label="My Account"
           items={menuItems}
         />
-      </div>
+      </div> */}
     </>
   );
 }
